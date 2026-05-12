@@ -3,7 +3,7 @@ package t03io.eg04formatting;
 public class Main {
   public static void main(String[] args) {
     
-    String name = "John";
+    String name = "John Doe";
     int age = 30;
     double height = 174.5;
 

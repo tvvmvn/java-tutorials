@@ -2,16 +2,13 @@ package t05string.eg05indexof;
 
 public class Main {
   public static void main(String[] args) {
-    String s = "foo";
+
+    String s = "foo bar baz";
 
     System.out.println(s.indexOf('f'));
-    System.out.println(s.indexOf('o'));
-    System.out.println(s.indexOf("fo"));
-    System.out.println(s.indexOf('z'));
+    System.out.println(s.indexOf('b'));
   }
 }
 
 // 0
-// 1
-// 0
-// -1
+// 4

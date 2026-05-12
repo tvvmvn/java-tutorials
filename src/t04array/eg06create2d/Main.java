@@ -5,18 +5,9 @@ public class Main {
 
     int[][] matrix = {{1, 2, 3}, {4, 5, 6}};
     
-    System.out.println(matrix[0][0]);
-    System.out.println(matrix[0][1]);
-    System.out.println(matrix[0][2]);
-    System.out.println(matrix[1][0]);
-    System.out.println(matrix[1][1]);
-    System.out.println(matrix[1][2]);
+    System.out.println(matrix);
+    System.out.println(matrix[0]);
+    System.out.println(matrix[1]);
   }
 }
 
-// 1
-// 2
-// 3
-// 4
-// 5
-// 6

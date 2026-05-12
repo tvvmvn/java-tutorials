@@ -5,7 +5,6 @@ public class Main {
 
     String fullName = "John Doe";
 
-    // 배열에 성과 이름을 저장합니다.
     String[] arr = fullName.split(" ");
 
     String firstName = arr[0];
