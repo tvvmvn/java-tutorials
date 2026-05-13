@@ -2,15 +2,13 @@ package t06operators.eg06logical;
 
 public class Main {
   public static void main(String[] args) {
-    boolean a = 1 > 0;
-    boolean b = 1 < 0;
 
-    System.out.println(a && b);
-    System.out.println(a || b);
-    System.out.println(!b);
+    System.out.println(1 > 0 && 1 > 2);
+    System.out.println(1 > 0 || 1 > 2);
+    System.out.println(!(1 > 0));
   }
 }
 
 // false
 // true
-// true
+// false
