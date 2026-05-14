@@ -6,7 +6,9 @@ public class Main {
     int[] arr = {10, 20, 30, 40, 50};
 
     for (int i = 0; i < arr.length; i++) {
-      arr[i] *= arr[i] * 10;
+      arr[i] *= 10;
     }
+
+    System.out.println(arr[0]);
   }
 }
