@@ -12,7 +12,7 @@ public class Main {
     } else if (age >= 30 && age < 40) {
       System.out.println("30대 입니다");
     } else {
-      System.out.println("해당사항 없음");
+      System.out.println("40대 이상입니다");
     }
   }
 }

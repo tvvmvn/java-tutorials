@@ -12,7 +12,7 @@ public class Main {
     } else if (score < 80 && score >= 70) {
       System.out.println("C");
     } else if (score < 70 && score >= 60) {
-      System.out.println("C");
+      System.out.println("D");
     } else {
       System.out.println("F");
     }
