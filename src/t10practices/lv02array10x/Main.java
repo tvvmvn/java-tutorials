@@ -1,10 +1,10 @@
-package t10practices.lv02doubleArray;
+package t10practices.lv02array10x;
 
 public class Main {
 
   static void doubleArray(int[] arr) {
     for (int i = 0; i < arr.length; i++) {
-      arr[i] *= 2;
+      arr[i] *= 10;
     }
   }
 

@@ -5,7 +5,7 @@ public class Main {
   public static void main(String[] args) {
     
     // input
-    int a = 1, b = 2, c = 4;
+    int a = 85, b = 91, c = 89;
 
     int sum = a + b + c;
 
