@@ -2,25 +2,26 @@ package oop01basic.eg02createinstance2;
 
 class Car {
 
-  String name;
-  int age;
+  String modelName;
+  String color;
+  int year;
 
   void drive() {
-    System.out.println("");
+    System.out.println("부릉");
   }
 }
 
 public class Main {
   public static void main(String[] args) {
 
-    //
     Car car = new Car();
-    car.name = "John";
-    car.age = 30;
+    car.modelName = "아반떼";
+    car.color = "화이트";
+    car.year = 2020;
 
-    //
-    System.out.println(car.name);
-    System.out.println(car.age);
+    System.out.println(car.modelName);
+    System.out.println(car.color);
+    System.out.println(car.year);
 
     //
     car.drive();

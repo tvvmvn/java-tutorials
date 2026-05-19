@@ -3,10 +3,11 @@ package oop01basic.eg01class2;
 class Car {
 
   String modelName;
+  String color;
   int year;
 
   void drive() {
-
+    System.out.println("driving");
   }
 }
 

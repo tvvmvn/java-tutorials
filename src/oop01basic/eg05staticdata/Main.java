@@ -1,25 +1,27 @@
 package oop01basic.eg05staticdata;
 
-class User {
+class Person {
 
   String name;
 
-  // 생성된 사용자 수
-  static int userCount = 0;
+  // 생성된 
+  static int population = 0;
 
-  User(String name) {
+  Person(String name) {
     this.name = name;
-    userCount++;
+    population++;
   }
 }
 
 public class Main {
   public static void main(String[] args) {
 
-    User user1 = new User("John");
-    User user2 = new User("Jane");
-    User user3 = new User("Mary");
+    Person john = new Person("John Doe");
+    Person jane = new Person("Jane Doe");
+    Person mary = new Person("Mary Doe");
 
-    System.out.println(User.userCount);
+    System.out.println(Person.population);
   }
 }
+
+// 3

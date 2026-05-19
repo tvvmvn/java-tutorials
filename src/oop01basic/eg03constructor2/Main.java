@@ -1,25 +1,25 @@
 package oop01basic.eg03constructor2;
 
-class Person {
+class Car {
 
-  String name;
-  int age;
+  String modelName;
+  String color;
+  int year;
 
-  Person(String name, int age) {
-    this.name = name;
-    this.age = age;
+  Car(String modelName, String color, int year) {
+    this.modelName = modelName;
+    this.color = color;
+    this.year = year;
   }
 }
 
 public class Main {
   public static void main(String[] args) {
 
-    Person person = new Person("John Doe", 30);
+    Car car = new Car("아반떼", "화이트", 2020);
 
-    System.out.println(person.name);
-    System.out.println(person.age);
+    System.out.println(car.modelName);
+    System.out.println(car.color);
+    System.out.println(car.year);
   }
 }
-
-// John Doe
-// 30
