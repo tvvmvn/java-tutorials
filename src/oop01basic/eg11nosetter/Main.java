@@ -2,7 +2,6 @@ package oop01basic.eg11nosetter;
 
 class Person {
   String name;
-  int age;
 }
 
 public class Main {

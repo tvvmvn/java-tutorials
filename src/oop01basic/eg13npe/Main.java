@@ -1,8 +1,9 @@
 package oop01basic.eg13npe;
 
 class Person {
-  String name;
-  int age;
+  void greeting() {
+    System.out.println("hello");
+  }
 }
 
 public class Main {
@@ -12,7 +13,7 @@ public class Main {
 
     // 사용하기 전에 객체가 NULL인지 확인합니다.
     if (person != null) {
-      System.out.println(person.name);
+      person.greeting();
     }
   }
 }

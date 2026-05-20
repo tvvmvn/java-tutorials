@@ -4,9 +4,9 @@ class Person {
   
   String name;
   int age;
-
+  // 생성자 오버로딩 - 의도가 중요하다
   Person(String name) {
-    // 내부적으로 두번째 생성자를 활용합니다.
+    // 내부적으로 두번째 생성자를 활용합니다. 
     this(name, 0);
   }
 

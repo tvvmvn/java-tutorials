@@ -2,12 +2,8 @@ package oop01basic.eg12encapsulation;
 
 class Person {
   
-  // private!
+  // private
   private String name;
-
-  Person(String name) {
-    setName(name);
-  }
 
   String getName() {
     return name;
@@ -15,7 +11,8 @@ class Person {
 
   void setName(String name) {
     if (name.length() < 3) {
-      throw new IllegalArgumentException("유효한 이름을 입력하세요.");
+      System.out.println("유효한 이름을 입력하세요.");
+      return;
     }
     this.name = name;
   }
@@ -24,7 +21,9 @@ class Person {
 public class Main {
   public static void main(String[] args) {
   
-    Person person = new Person("j");
+    Person person = new Person();
+    
+    person.setName("John Doe");
 
     System.out.println(person.getName());
   }

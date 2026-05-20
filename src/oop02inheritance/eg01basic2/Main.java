@@ -1,20 +1,24 @@
 package oop02inheritance.eg01basic2;
 
 // 부모 클래스
-class Person {
-  String name;
-  int age;
+class Car {
+  String modelName;
+  String color;
+  int year;
+  
+  void drive() {
+    System.out.println("부릉부릉");
+  }
 }
 
 // 자식 클래스
-class Student extends Person {
-  // name, age를 상속받음
-  int grade;
+class EV extends Car {
+  int batteryCapacity;
 }
 
 public class Main {
+  public static void main(String[] args) {
+    
+  }
 }
 
-// John
-// 20
-// 3

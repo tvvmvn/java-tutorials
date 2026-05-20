@@ -2,7 +2,7 @@ package oop01basic.eg11withsetter;
 
 class Person {
 
-  String name;
+  private String name;
 
   void setName(String name) {
     if (name.length() < 3) {
@@ -19,6 +19,8 @@ public class Main {
     
     Person person = new Person();
 
-    person.setName("j");
+    // person.name = "j";
+
+    person.setName("John Doe");
   }
 }

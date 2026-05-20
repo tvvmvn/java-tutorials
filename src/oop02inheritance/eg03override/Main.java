@@ -1,14 +1,16 @@
 package oop02inheritance.eg03override;
 
 class Person {
+  // ..
   void greeting() {
-    System.out.println("hello");
+    System.out.println("안녕하세요");
   }
 }
 
 class Student extends Person {
+  // ..
   void greeting() {
-    System.out.println("hello I'm student");
+    System.out.println("안녕하세요 저는 학생입니다");
   }
 }
 

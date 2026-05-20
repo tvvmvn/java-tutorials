@@ -1,40 +1,37 @@
 package oop02inheritance.eg04superconstructor2;
 
-class Person {
+class Car {
 
-  String name;
-  int age;
+  String modelName;
+  String color;
+  int year;
 
-  // 부모의 생성자
-  Person(String name, int age) {
-    this.name = name;
-    this.age = age;
+  Car(String modelName, String color, int year) {
+    this.modelName = modelName;
+    this.color = color;
+    this.year = year;
   }
 }
 
-class Student extends Person {
-  // name
-  // age
-  int grade;
+class EV extends Car {
 
-  // 자식의 생성자
-  Student(String name, int age, int grade) {
+  int batteryCapacity;
+
+  EV(String modelName, String color, int year, int batteryCapacity) {
     // 물려받은 속성을 부모 생성자에게 전달합니다.
-    super(name, age);
-    this.grade = grade;
+    super(modelName, color, year);
+    this.batteryCapacity = batteryCapacity;
   }
 }
 
 public class Main {
   public static void main(String[] args) {
-    Student student = new Student("John", 20, 4);
+    
+    EV ev = new EV("네오", "실버", 2020, 1000);
 
-    System.out.println(student.name);
-    System.out.println(student.age);
-    System.out.println(student.grade);
+    System.out.println(ev.modelName);
+    System.out.println(ev.color);
+    System.out.println(ev.year);
+    System.out.println(ev.batteryCapacity);
   }
 }
-
-// John
-// 20
-// 4

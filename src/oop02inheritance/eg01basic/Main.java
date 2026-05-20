@@ -4,17 +4,19 @@ package oop02inheritance.eg01basic;
 class Person {
   String name;
   int age;
+
+  void greeting() {
+    System.out.println("hello");
+  }
 }
 
 // 자식 클래스
 class Student extends Person {
-  // name, age를 상속받음
   int grade;
 }
 
 public class Main {
+  public static void main(String[] args) {
+    
+  }
 }
-
-// John
-// 20
-// 3
