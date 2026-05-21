@@ -1,18 +1,17 @@
 package oop03abstraction.eg05extendsinterface;
 
 // 부모 인터페이스
-interface 마우스 {
-  void click();
+interface YouTube {
+  void playVideo();
 }
 
 // 자식 인터페이스
-interface 휠마우스 extends 마우스 {
-  // click() 상속받음
-  void scroll();
+interface YouTubePremium extends YouTube {
+  void removeAds();
 }
 
 public class Main {
   public static void main(String[] args) {
-    
+
   }
 }

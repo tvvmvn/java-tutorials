@@ -1,26 +1,36 @@
 package oop03abstraction.eg02abstractextends;
 
 abstract class Animal {
-
-  // 추상 메서드
   abstract void cry();
-  
-  // 일반 메서드
-  void eat() {
-    //..
+}
+
+class Dog extends Animal {
+  void cry() { 
+    System.out.println("멍멍");
+  }
+}
+
+class Cat extends Animal {
+  void cry() {
+    System.out.println("야옹");
   }
 }
 
 class Duck extends Animal {
-  // 추상 메서드를 자식 고유의 방법으로 구현합니다
-  void cry() { 
+  void cry() {
     System.out.println("꽥꽥");
   }
 }
 
 public class Main {
   public static void main(String[] args) {
+    Animal dog = new Dog();
+    dog.cry();
+
+    Animal cat = new Cat();
+    cat.cry();
+
+    Animal duck = new Duck();
+    duck.cry();
   }
 }
-
-// 꽥꽥

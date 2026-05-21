@@ -1,13 +1,23 @@
 package oop03abstraction.eg04interfaceimplements;
 
 interface Animal {
-  // 추상 메서드
   void cry();
 }
 
-class Duck implements Animal {
-  // 추상 메서드를 자식 고유의 방법으로 구현합니다
+class Dog implements Animal {
   public void cry() { 
+    System.out.println("멍멍");
+  }
+}
+
+class Cat implements Animal {
+  public void cry() {
+    System.out.println("야옹");
+  }
+}
+
+class Duck implements Animal {
+  public void cry() {
     System.out.println("꽥꽥");
   }
 }
@@ -15,10 +25,12 @@ class Duck implements Animal {
 public class Main {
   public static void main(String[] args) {
 
-    Duck duck = new Duck();
+    Animal dog = new Dog();
+    Animal cat = new Cat();
+    Animal duck = new Duck();
 
+    dog.cry();
+    cat.cry();
     duck.cry();
   }
 }
-
-// 꽥꽥

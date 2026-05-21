@@ -8,14 +8,14 @@ interface Toy {
 // Toy 구현체
 class Lego implements Toy {
   public String work() {
-    return "레고 작동중..";
+    return "레고 작동중";
   }
 }
 
 // Toy 구현체2
 class Dinosaur implements Toy {
   public String work() {
-    return "공룡이다!";
+    return "공룡 작동중";
   }
 }
 
@@ -37,7 +37,7 @@ class Kids {
 public class Main {
   public static void main(String[] args) {
     
-    // 어떤 장난감도 입력 가능
+    // 장난감이 바뀌어도 됨!
     Kids kids = new Kids(new Lego());
 
     kids.play();

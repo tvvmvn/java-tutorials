@@ -1,51 +1,47 @@
 package oop04practices.q00polymorphism;
 
-// polymorphism + OCP
+interface Tool {
+  void work();
+}
 
-class Tools {
-  void work() {
-    System.out.println("working");
+class Knife implements Tool {
+  public void work() {
+    System.out.println("써는중");
   }
 }
 
-class Knife extends Tools {
-  void work() {
-    System.out.println("slicing");
+class Scissors implements Tool {
+  public void work() {
+    System.out.println("자르는중");
   }
 }
 
-class Scissors extends Tools {
-  void work() {
-    System.out.println("cutting");
+class Hammer implements Tool {
+  public void work() {
+    System.out.println("못박는중");
   }
 }
 
-class Hammer extends Tools {
-  void work() {
-    System.out.println("nailing");
-  }
-}
+// + 새 도구 추가
 
 public class Main {
   public static void main(String[] args) throws Exception {
     
-    Tools myTool = null;
-    String req = "cutting";
+    Tool tool = null;
+    String req = "못박기";
 
-    switch (req) {
-      case "slicing":
-        myTool = new Knife();
-        break;
-      case "cutting":
-        myTool = new Scissors();
-        break;
-      case "nailing":
-        myTool = new Hammer();
-        break;
+    if ("썰기".equals(req)) {
+      tool = new Knife();
+    } else if ("자르기".equals(req)) {
+      tool = new Scissors();
+    } else if ("못박기".equals(req)) {
+      tool = new Hammer();
+    } else {
+      System.out.println("알수없는 요청");
+      return;
     }
-
-    if (myTool != null) {
-      myTool.work();
-    }
+    
+    // 이번엔 못박는중.. (다형성)
+    tool.work();
   }
 }

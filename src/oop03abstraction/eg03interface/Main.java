@@ -1,9 +1,8 @@
 package oop03abstraction.eg03interface;
 
 interface Animal {
-  // 추상 메서드
+  // public abstract
   void cry();
-  void eat();
 }
 
 public class Main {
@@ -11,5 +10,3 @@ public class Main {
 
   }
 }
-
-// 꽥꽥
