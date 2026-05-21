@@ -2,17 +2,18 @@ package oop02inheritance.eg07downcasting;
 
 // 부모 클래스
 class Person {
+
   String name;
 
   void greeting() {
-    System.out.println("hello");
+    System.out.println("안녕하세요");
   }
 }
 
 // 자식 클래스
 class Student extends Person {
   void goSchool() {
-    System.out.println("학교가는 중");
+    System.out.println("학교가는중");
   }
 }
 
@@ -28,7 +29,6 @@ public class Main {
     // person을 다운캐스팅해서 student 객체를 생성합니다.
     if (person instanceof Student) {
       Student student = (Student) person;
-      System.out.println(student.name);
       student.goSchool(); 
     }
   }

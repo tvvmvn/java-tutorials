@@ -1,36 +1,36 @@
 package oop03abstraction.eg04interfaceimplements2;
 
-interface Transport {
-  void carry();
+interface Chessman {
+  void move();
 }
 
-class Bus implements Transport {
-  public void carry() { 
-    System.out.println("부릉부릉");
+class Queen implements Chessman {
+  public void move() { 
+    System.out.println("모든 곳으로 이동!");
   }
 }
 
-class Train implements Transport {
-  public void carry() {
-    System.out.println("칙칙폭폭");
+class Knight implements Chessman {
+  public void move() {
+    System.out.println("직선으로 이동!");
   }
 }
 
-class Airplane implements Transport {
-  public void carry() {
-    System.out.println("슈웅");
+class Bishop implements Chessman {
+  public void move() {
+    System.out.println("대각선으로 이동!");
   }
 }
 
 public class Main {
   public static void main(String[] args) {
 
-    Transport bus = new Bus();
-    Transport train = new Train();
-    Transport airplane = new Airplane();
+    Chessman queen = new Queen();
+    Chessman knight = new Knight();
+    Chessman bishop = new Bishop();
 
-    bus.carry();
-    train.carry();
-    airplane.carry();
+    queen.move();
+    knight.move();
+    bishop.move();
   }
 }

@@ -1,7 +1,7 @@
 package oop03abstraction.eg03interface2;
 
-interface Transport {
-  void carry();
+interface Chessman {
+  void move();
 }
 
 public class Main {
