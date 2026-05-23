@@ -5,20 +5,20 @@ interface PayProcessor {
   void processPay();
 }
 
-class ApplePay implements PayProcessor {
+class ApplePayProcessor implements PayProcessor {
   // LSP: 다른 일을 하는 것이 아니라 부모가 시킨 일(결제 처리)를 처리해야 합니다.
   public void processPay() { 
     System.out.println("애플페이 결제요청 처리중");
   }
 }
 
-class KakaoPay implements PayProcessor {
+class KakaoPayProcessor implements PayProcessor {
   public void processPay() { 
     System.out.println("카카오페이 결제요청 처리중");
   }
 }
 
-class NaverPay implements PayProcessor {
+class NaverPayProcessor implements PayProcessor {
   public void processPay() { //LSP
     System.out.println("네이버페이 결제요청 처리중" );
   }
@@ -38,7 +38,7 @@ class OrderService {
     System.out.println("주문 접수");
     
     // 추상화: 결제 수단들에 대해 자세히 알 필요가 없다
-    // 다형성: payment가 모든 결제 요청을 처리할 수 있다!
+    // 다형성: payProcessor가 모든 결제 요청을 처리할 수 있다!
     payProcessor.processPay(); 
 
     System.out.println("처리 완료");
@@ -53,11 +53,11 @@ public class Main {
     PayProcessor payProcessor;
 
     if ("apple-pay".equals(payRequest)) {
-      payProcessor = new ApplePay();
+      payProcessor = new ApplePayProcessor();
     } else if ("kakao-pay".equals(payRequest)) {
-      payProcessor = new KakaoPay();
+      payProcessor = new KakaoPayProcessor();
     } else if ("naver-pay".equals(payRequest)) {
-      payProcessor = new NaverPay();
+      payProcessor = new NaverPayProcessor();
     } else {
       System.out.println("알 수 없는 결제 요청");
       return;

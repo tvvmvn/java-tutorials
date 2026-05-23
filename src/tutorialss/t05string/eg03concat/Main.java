@@ -1,0 +1,15 @@
+package tutorialss.t05string.eg03concat;
+
+public class Main {
+  public static void main(String[] args) {
+    
+    String firstName = "John";
+    String lastName = "Doe";
+
+    String fullName = firstName + " " + lastName;
+    
+    System.out.println(fullName);
+  }
+}
+
+// John Doe

@@ -21,9 +21,9 @@ class NaverPayProcessor {
 class OrderService {
   
   void processOrder(String payRequest) {
-    System.out.println("주문 접수");
+    System.out.println("주문이 접수되었습니다");
     
-    // OCP 위반: 새 결제 수단이 추가되면 이 코드를 수정해야 한다 
+    // OCP 위반: 새 결제 수단이 추가되면 OrderService를 수정해야 한다 
     // 추상화 없음: OrderService가 여러가지 결제 처리기를 알아야 한다.
     // 다형성 없음: 결제 요청에 따라 각자 다른 결제 처리기가 사용됩니다.
     if ("apple-pay".equals(payRequest)) {
@@ -40,7 +40,7 @@ class OrderService {
       return;
     }
     
-    System.out.println("처리 완료");
+    System.out.println("주문이 완료되었습니다");
   }
 }
 

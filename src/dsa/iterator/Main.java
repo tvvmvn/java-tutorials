@@ -12,10 +12,10 @@ public class Main {
     cars.add("BMW");
     cars.add("Ford");
 
-    Iterator<String> it = cars.iterator();
+    Iterator<String> iterator = cars.iterator();
 
-    System.out.println(it.next());
-    System.out.println(it.next());
-    System.out.println(it.next());
+    System.out.println(iterator.next());
+    System.out.println(iterator.next());
+    System.out.println(iterator.next());
   }
 }
