@@ -1,0 +1,55 @@
+package oop.oop04practices.eg50nobuilder;
+
+class Person {
+
+  private String name;
+  private String email;
+  private String address;
+  private int age;
+
+  Person(String name, String email, String address, int age) {
+    this.name = name;
+    this.email = email;
+    this.address = address;
+    this.age = age;
+  }
+
+  // 오버로딩까지 추가하면 객체 생성과 관련된 코드가 너무 많아져요
+  // 따라서 객체 생성 로직들을 한 곳에 모으고 
+  // 나머지 영역에서는 비즈니스에만 집중하고 싶습니다.
+
+  // 여기 부분이 비즈니스 로직들.
+  public void eat() {
+    System.out.println("밥 먹는중");
+  }
+
+  public void work() {
+    System.out.println("일 하는중");
+  }
+
+  public void sleep() {
+    System.out.println("잠자는 중");
+  }
+
+  @Override
+  public String toString() {
+    return String.format("Person{name=%s, email=%s, address=%s, age=%d}", name, email, address, age);
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+
+    // Full info
+    Person john = new Person("John Doe", "johndoe@example.com", "xxx", 30);
+    System.out.println(john);
+
+    // Hide age
+    Person jane = new Person("Jane Doe", "janedoe@example.com", "xxx", 0);
+    System.out.println(jane);
+
+    // Hide address, age
+    Person mary = new Person("Mary Doe", "marydoe@example.com", "", 0);
+    System.out.println(mary);
+  }
+}
