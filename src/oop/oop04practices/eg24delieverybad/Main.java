@@ -1,38 +1,38 @@
 package oop.oop04practices.eg24delieverybad;
 
-class PasswordAuthenticator {
-  void authWithPassword() {
+class PasswordAuthProcessor {
+  void checkPassword() {
     System.out.println("비밀번호 검증중");
   }
 }
 
 class FingerPrintAuthenticator {
-  void checkFingerPrint() {
+  void processAuth() {
     System.out.println("지문 검증중");
   }
 }
 
-class FaceIDAuthenticator {
-  void FaceIDauthenticate() {
+class FaceIDProcessor {
+  void authenticate() {
     System.out.println("얼굴 검증중");
   }
 }
 
-class SystemOperator {  
+class SystemService {  
   void activateSystem(String authMethods) {
     System.out.println("시스템 작동 준비중");
     System.out.println("자원 확보중...");
     
     // 인증 절차
     if ("password".equals(authMethods)) {
-      PasswordAuthenticator passwordAuthenticator = new PasswordAuthenticator();
-      passwordAuthenticator.authWithPassword();
+      PasswordAuthProcessor passwordAuthProcessor = new PasswordAuthProcessor();
+      passwordAuthProcessor.checkPassword();
     } else if ("fingerprint".equals(authMethods)) {
       FingerPrintAuthenticator fingerPrintAuthenticator = new FingerPrintAuthenticator();
-      fingerPrintAuthenticator.checkFingerPrint();
+      fingerPrintAuthenticator.processAuth();
     } else if ("face-id".equals(authMethods)) {
-      FaceIDAuthenticator faceIDAuthenticator = new FaceIDAuthenticator();
-      faceIDAuthenticator.FaceIDauthenticate();
+      FaceIDProcessor faceIDProcessor = new FaceIDProcessor();
+      faceIDProcessor.authenticate();
     } else {
       System.out.println("알 수 없는 인증 방식입니다.");
       return;
@@ -46,8 +46,8 @@ class SystemOperator {
 public class Main {
   public static void main(String[] args) throws Exception {
 
-    SystemOperator systemOperator = new SystemOperator();
-    systemOperator.activateSystem("face-id");
+    SystemService systemService = new SystemService();
+    systemService.activateSystem("face-id");
   }
 }
 

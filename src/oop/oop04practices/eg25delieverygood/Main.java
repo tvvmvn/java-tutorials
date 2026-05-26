@@ -22,11 +22,11 @@ class FaceIDAuthenticator implements Authenticator {
   }
 }
 
-class SystemOperator {
+class SystemService {
   // 
   Authenticator authenticator;
 
-  SystemOperator(Authenticator authenticator) {
+  SystemService(Authenticator authenticator) {
     this.authenticator = authenticator;
   }
   
@@ -61,8 +61,8 @@ public class Main {
     }
 
     // 인증기 전달
-    SystemOperator systemOperator = new SystemOperator(authenticator);
-    systemOperator.activateSystem();
+    SystemService systemService = new SystemService(authenticator);
+    systemService.activateSystem();
   }
 }
 
