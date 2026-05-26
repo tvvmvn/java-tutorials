@@ -1,24 +1,15 @@
 package oop.oop04practices.eg28goodsrp;
 
-class User {
-  String username;
-  String password;
-
-  User(String username, String password) {
-    this.username = username;
-    this.password = password;
-  }
-}
-
 // DAO
 class UserRepository {
-  User findUserByUsername(String username) {
-    return null;
+  void findUserByUsername(String username) {
+    System.out.println("DB 검색: 가입된 사용자가 아닙니다: " + username);
   }
 
-  User save(User user) {
-    System.out.println("DB에 저장: " + user.username);
-    return user;
+  void save(String username, String password) {
+    System.out.println("다음 사용자를 데이터베이스에 저장합니다.");
+    System.out.printf("{username=%s, password=%s}\n", username, password);
+    System.out.println("저장 완료");
   }
 }
 
@@ -31,17 +22,13 @@ class UserService {
   }
 
   // 가입 처리의 핵심 로직
-  String register(String username, String password) {
-    // 중복 체크
-    User user = userRepository.findUserByUsername(username);
+  void register(String username, String password) {
 
-    if (user != null) {
-      return null;
-    }
+    // DAO에게 중복 체크를 요청합니다
+    userRepository.findUserByUsername(username);
 
-    // DB에 저장
-    User savedUser = userRepository.save(new User(username, password));
-    return savedUser.username;
+    // DB에 저장을 요청합니다.
+    userRepository.save(username, password);
   }  
 } 
 
@@ -54,20 +41,15 @@ class UserController {
   }
 
   // 클라이언트와 소통하는 계층
-  String signUp(String username, String password) {
+  void signUp(String username, String password) {
 
     // 가입 로직을 처리합니다
-    String newUser = userService.register(username, password);
+    userService.register(username, password);
 
-    if (newUser != null) {
-      // 클라이언트에게 응답을 전송
-      return "새 회원: " + newUser;
-    }
-
-    return null;
+    // 클라이언트에게 응답을 전송합니다.
+    System.out.println("가입이 완료되었습니다 " + username + "님!");
   }
 }
-
 
 public class Main {
   public static void main(String[] args) {
@@ -75,12 +57,11 @@ public class Main {
     UserService userService = new UserService(userRepository);
     UserController userController = new UserController(userService);
 
-    // 요청
+    // 서버에 전송된 가입 요청 정보
     String username = "johndoe";
     String password = "1234";
 
-    // 응답
-    String response = userController.signUp(username, password);
-    System.out.println(response);
+    // 서버에서 가장 외부에 위치
+    userController.signUp(username, password);
   }
 }

@@ -1,8 +1,16 @@
+package oop.oop04practices.eg92withadapter;
+
 // =======================================================
 // 1. 우리 시스템의 표준 규격 (Target Interface)
 // =======================================================
 interface Payment {
   void pay(int amount); // 우리는 원화(KRW) 정수값을 받는 것이 표준 규칙
+}
+
+class DefaultPaySystem implements Payment {
+  public void pay(int amount) {
+    System.out.println("￦" + amount + " 결제 완료!");
+  }
 }
 
 // =======================================================
@@ -15,9 +23,6 @@ class BritishPaySystem {
   }
 }
 
-// =======================================================
-// 3. 돼지코 젠더 역할을 하는 어댑터 클래스 (Adapter)
-// =======================================================
 class BritishPayAdapter implements Payment {
 
   private final BritishPaySystem britishPaySystem;
@@ -38,17 +43,16 @@ class BritishPayAdapter implements Payment {
 }
 
 class PayService {
-  void processPay(int krwPrice) {
-    // 1. 외국의 원본 시스템 객체 생성
-    BritishPaySystem foreignSystem = new BritishPaySystem();
 
-    // 2. 어댑터(젠더)를 씌워서 우리 표준 규격(Payment) 타입으로 포장
-    Payment ukPayment = new BritishPayAdapter(foreignSystem);
+  Payment payment;
 
-    // 3. 클라이언트는 외부 라이브러리가 어떻게 생겼든 상관없이,
-    // 오직 우리 표준 규칙(pay())만 보고 투명하게 사용하면 끝!
+  PayService(Payment payment) {
+    this.payment = payment;
+  }
+
+  void processPay(int price) {
     System.out.println("[주문 시스템 확인] 결제 처리를 시작합니다.");
-    ukPayment.pay(krwPrice);
+    payment.pay(price);
     System.out.println("[주문 시스템 확인] 최종 주문 처리가 완료되었습니다.");
   }
 }
@@ -59,7 +63,22 @@ class PayService {
 public class Main {
   public static void main(String[] args) {
 
-    PayService payService = new PayService();
-    payService.processPay(2600);
+    String payType = "uk";
+    PayService payService;
+
+   if ("kr".equals(payType)) {
+      DefaultPaySystem paySystem = new DefaultPaySystem();
+      payService = new PayService(paySystem);
+    } else if ("uk".equals(payType)) {
+      BritishPaySystem foreignSystem = new BritishPaySystem();
+      // Adapter
+      Payment adapter = new BritishPayAdapter(foreignSystem);
+      payService = new PayService(adapter);
+    } else {
+      System.out.println("지원되지 않는 화폐");
+      return;
+    }
+
+    payService.processPay(3600);
   }
 }

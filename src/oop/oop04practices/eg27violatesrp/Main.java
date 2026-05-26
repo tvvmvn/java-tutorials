@@ -1,29 +1,19 @@
 package oop.oop04practices.eg27violatesrp;
 
-class User {
-  String username;
-  String password;
-
-  User(String username, String password) {
-    this.username = username;
-    this.password = password;
-  }
-}
-
 class Controller {
-  String signUp(String username, String password) {
+  void signUp(String username, String password) {
 
     // DB와 통신하며 기존 회원인지 검증합니다
-    System.out.println("가입된 아이디인지 검사중..");
-    System.out.println("아이디: " + username);
+    System.out.println("가입된 아이디인지 검사중: " + username);
     System.out.println("존재하지 않는 아이디. 가입을 계속합니다");
 
-    // 유저를 생성하고 DB에 저장합니다.
-    User user = new User(username, password);
-    System.out.println("DB에 저장: " + user.username);
-
-    // 클라이언트에게 전송할 데이터를 반환합니다
-    return user.username;
+    // 유저를 DB에 저장합니다.
+    System.out.println("다음 사용자를 데이터베이스에 저장합니다.");
+    System.out.printf("{username=%s, password=%s}\n", username, password);
+    System.out.println("저장 완료");
+    
+    // 클라이언트에게 응답을 전송합니다.
+    System.out.println("가입이 완료되었습니다 " + username + "님!");
   }
 }
 
@@ -37,8 +27,6 @@ public class Main {
     String username = "johndoe";
     String password = "1234";
 
-    // 서버의 응답
-    String response = controller.signUp(username, password);
-    System.out.println(response);
+    controller.signUp(username, password);
   }
 }
