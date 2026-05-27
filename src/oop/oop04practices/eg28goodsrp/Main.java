@@ -3,7 +3,8 @@ package oop.oop04practices.eg28goodsrp;
 // DAO
 class UserRepository {
   void findUserByUsername(String username) {
-    System.out.println("DB 검색: 가입된 사용자가 아닙니다: " + username);
+    System.out.printf("DB 검색 결과: %s는 가입된 아이디가 아닙니다\n", username);
+    System.out.println("가입을 계속합니다");
   }
 
   void save(String username, String password) {
@@ -24,7 +25,7 @@ class UserService {
   // 가입 처리의 핵심 로직
   void register(String username, String password) {
 
-    // DAO에게 중복 체크를 요청합니다
+    // DAO에게 아이디 중복 체크를 요청합니다
     userRepository.findUserByUsername(username);
 
     // DB에 저장을 요청합니다.
@@ -53,6 +54,7 @@ class UserController {
 
 public class Main {
   public static void main(String[] args) {
+
     UserRepository userRepository = new UserRepository();
     UserService userService = new UserService(userRepository);
     UserController userController = new UserController(userService);

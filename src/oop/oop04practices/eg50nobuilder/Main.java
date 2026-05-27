@@ -7,11 +7,20 @@ class Person {
   private String address;
   private int age;
 
+  // 너무 많은 생성자들
   Person(String name, String email, String address, int age) {
     this.name = name;
     this.email = email;
     this.address = address;
     this.age = age;
+  }
+
+  Person(String name, String email, String address) {
+    this(name, email, address, 0);
+  }
+
+  Person(String name, String email) {
+    this(name, email, "", 0);
   }
 
   // 오버로딩까지 추가하면 객체 생성과 관련된 코드가 너무 많아져요
@@ -44,12 +53,12 @@ public class Main {
     Person john = new Person("John Doe", "johndoe@example.com", "xxx", 30);
     System.out.println(john);
 
-    // Hide age
-    Person jane = new Person("Jane Doe", "janedoe@example.com", "xxx", 0);
+    // 나이 비공개
+    Person jane = new Person("Jane Doe", "janedoe@example.com", "xxx");
     System.out.println(jane);
 
-    // Hide address, age
-    Person mary = new Person("Mary Doe", "marydoe@example.com", "", 0);
+    // 나이, 주소 비공개
+    Person mary = new Person("Mary Doe", "marydoe@example.com");
     System.out.println(mary);
   }
 }

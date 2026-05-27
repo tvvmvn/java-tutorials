@@ -1,13 +1,14 @@
 package oop.oop04practices.eg27violatesrp;
 
+// DB 통신, 로직, 클라이언트와 통신을 모두 책임지는 객체
 class Controller {
   void signUp(String username, String password) {
 
-    // DB와 통신하며 기존 회원인지 검증합니다
-    System.out.println("가입된 아이디인지 검사중: " + username);
-    System.out.println("존재하지 않는 아이디. 가입을 계속합니다");
+    // DB를 검색해서 이미 가입된 사용자인지 확인합니다.
+    System.out.printf("DB 검색 결과: %s는 가입된 아이디가 아닙니다\n", username);
+    System.out.println("가입을 계속합니다");
 
-    // 유저를 DB에 저장합니다.
+    // 가입된 사용자가 아니면 DB에 저장합니다.
     System.out.println("다음 사용자를 데이터베이스에 저장합니다.");
     System.out.printf("{username=%s, password=%s}\n", username, password);
     System.out.println("저장 완료");

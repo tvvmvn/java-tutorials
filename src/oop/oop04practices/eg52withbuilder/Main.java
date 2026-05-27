@@ -67,7 +67,7 @@ class Person {
     }
 
     public Person build() {
-      // 빌더 객체(this)를 바깥 클래스 생성자에게 전달
+      // this(빌더 인스턴스)를 바깥 클래스 생성자에게 전달
       return new Person(this);
     }
   }
@@ -85,7 +85,7 @@ public class Main {
         .build();
     System.out.println(john);
 
-    // Hide age
+    // 나이 없음
     Person jane = Person.builder()
         .name("Jane Doe")
         .email("janedoe@example.com")
@@ -93,7 +93,7 @@ public class Main {
         .build();
     System.out.println(jane);
 
-    // Hide address, age
+    // 나이, 주소 없음
     Person mary = Person.builder() 
         .name("Mary Doe")
         .email("marydoe@example.com")
