@@ -1,65 +1,101 @@
-// =======================================================
-// 1. 우리 시스템의 표준 규격 (Target Interface)
-// =======================================================
-interface Payment {
-  void pay(int amount); // 우리는 원화(KRW) 정수값을 받는 것이 표준 규칙
-}
+import java.sql.SQLException;
 
-// =======================================================
-// 2. 외부 업체가 준 라이브러리 (Adaptee: 수정 불가하다고 가정)
-// =======================================================
-class BritishPaySystem {
-  // 메서드 이름도 다르고, 금액도 double(파운드화)로 받아야만 함
-  public void processBritishPayment(double poundAmount) {
-    System.out.println("[영국 현지 결제] £" + poundAmount + " 파운드 결제 완료!");
+import javax.management.RuntimeErrorException;
+
+abstract class AbstractDbExecutor<T> {
+  
+  public final List<T> execute(String sql) {
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+    List<T>resultList = new ArrayList<>();
+
+    try {
+      conn = DriverManager.getConnection("jdbc:h2:mem:testdb", "sa", "");
+
+      stmt = conn.prepareStatement(sql);
+
+      rs = executeQuery(stmt);
+
+      while(rs.next()) {
+        resultList.add(handleResult(rs));
+      }
+    } catch (SQLException e) {
+      System.err.println("에러 발생: " + e.getMessage());
+      throw new RuntimeErrorException(e);
+    } finally {
+      closeResources(rs, stmt, conn);
+    }
+
+    return resultList;
+  }
+
+  protected ResultSet executeQuery(PreparedStatement stmt) throws SQLException {
+    return stmt.executeQuery();
+  }
+
+  protected abstract T handleResult(Result rs) throws SQLException {
+    return null;
+  }
+
+  // 공통 자원해제 메서드
+  private void closeResources(ResultSet rs, Statement stmt, Connection conn) {
+    try {if (rs != null) rs.close()} catch (SQLException e) {}
+    try {if (stmt != null) stmt.close()} catch (SQLException e) {}
+    try {if (conn != null) conn.close()} catch (SQLException e) {}
+    System.out.println("DB 자원을 종료합니다");
   }
 }
 
-// =======================================================
-// 3. 돼지코 젠더 역할을 하는 어댑터 클래스 (Adapter)
-// =======================================================
-class BritishPayAdapter implements Payment {
-
-  private final BritishPaySystem britishPaySystem;
-
-  // 변환할 외부 라이브러리 객체를 주입받음
-  public BritishPayAdapter(BritishPaySystem britishPaySystem) {
-    this.britishPaySystem = britishPaySystem;
+class User {
+  String name; String email;
+  User(String name, String email) {
+    this.name = name;
+    this.email = email;
   }
+}
 
+class Product {
+  String title; int price;
+  Product(String title, int price) {
+    this.title = title;
+    this.price = price;
+  }
+}
+
+// 유저 테이블 조회용 팩토리
+class UserQueryExecutor extends AbstractDbExecutor<User> {
   @Override
-  public void pay(int amount) {
-    // [번역 1] 우리 방식의 원화(int)를 영국 방식의 파운드화(double)로 환전
-    double poundAmount = amount / 1800.0; // 환율 1,800원 가정
-
-    // [번역 2] 우리 규격의 메서드 호출을 외부 업체의 메서드 호출로 매핑
-    britishPaySystem.processBritishPayment(poundAmount);
+  protected User handleResult(ResultSet rs) throws SQLException {
+    return new User(rs.getString("username"), rs.getString("email"));
   }
 }
 
-class PayService {
-  void processPay(int krwPrice) {
-    // 1. 외국의 원본 시스템 객체 생성
-    BritishPaySystem foreignSystem = new BritishPaySystem();
-
-    // 2. 어댑터(젠더)를 씌워서 우리 표준 규격(Payment) 타입으로 포장
-    Payment ukPayment = new BritishPayAdapter(foreignSystem);
-
-    // 3. 클라이언트는 외부 라이브러리가 어떻게 생겼든 상관없이,
-    // 오직 우리 표준 규칙(pay())만 보고 투명하게 사용하면 끝!
-    System.out.println("[주문 시스템 확인] 결제 처리를 시작합니다.");
-    ukPayment.pay(krwPrice);
-    System.out.println("[주문 시스템 확인] 최종 주문 처리가 완료되었습니다.");
+// 상품 테이블 조회용 팩토리
+class ProductQueryExecutor extends AbstractDbExecutor<Product> {
+  @Override
+  protected Product handleResult(ResultSet rs) throws SQLException {
+    return new Product(rs.getString("product_name"), rs.getString("price"));
   }
 }
 
-// =======================================================
-// 4. 실행 및 테스트 (Client)
-// =======================================================
 public class Main {
   public static void main(String[] args) {
+    System.out.println("");
 
-    PayService payService = new PayService();
-    payService.processPay(2600);
+    //  H2 가상 드라이버 초기화
+    try { 
+      Class.forName("org.h2.Driver")
+    } catch (ClassNotFoundException e) {}
+
+    // 유저 조회요청
+    AbstractDbExecutor<User> userExecutor = new UserQueryExecutor();
+    System.out.println("회원 목록을 조회합니다");
+    List<User> users = userExecutor.execute("SELECT username, email FROM users");
+
+    // 상품 조회요청 처리
+    AbstractDbExecutor<Product> productExecutor = new ProductQueryExecutor();
+    System.out.println("상품 목록을 조회합니다");
+    List<Product> products = productExecutor.execute("SELECT product_name, price FROM products");
   }
 }

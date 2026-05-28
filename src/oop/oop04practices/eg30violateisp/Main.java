@@ -23,7 +23,7 @@ class Printer implements MFD {
   }
 }
 
-class Scanner {
+class Scanner implements MFD {
   public void print() {
     System.out.println("지원하지 않는 기능");
   }
@@ -37,7 +37,7 @@ class Scanner {
   }
 }
 
-class Fax {
+class Fax implements MFD {
   public void print() {
     System.out.println("지원하지 않는 기능");
   }
