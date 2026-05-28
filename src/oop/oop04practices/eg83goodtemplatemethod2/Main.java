@@ -2,7 +2,7 @@ package oop.oop04practices.eg83goodtemplatemethod2;
 
 abstract class ChipRecipeTemplate {
   // 자식이 수정 못하도록 방어
-  final void execute() {
+  final void perform() {
     System.out.println("기름을 준비합니다");
     System.out.println("기름을 끓입니다.");
 
@@ -38,13 +38,16 @@ class CornChipRecipe extends ChipRecipeTemplate {
 public class Main {
   public static void main(String[] args) {
     
-    ChipRecipeTemplate potatoChipRecipe = new PotatoChipRecipe();
-    potatoChipRecipe.execute();
+// 💡 포인트: 부모 타입의 배열을 선언하고 서로 다른 자식 인스턴스들을 한 번에 묶어 담습니다.
+    ChipRecipeTemplate[] recipeArray = {
+        new PotatoChipRecipe(),
+        new SweetPotatoChipRecipe(),
+        new CornChipRecipe()
+    };
 
-    ChipRecipeTemplate sweetPotatoChipRecipe = new SweetPotatoChipRecipe();
-    sweetPotatoChipRecipe.execute();
-
-    ChipRecipeTemplate cornChipRecipe = new CornChipRecipe();
-    cornChipRecipe.execute();
+    // 향상된 for문을 사용하여 단 몇 줄로 일괄 처리 프로세스 완료
+    for (ChipRecipeTemplate recipe : recipeArray) {
+        recipe.perform(); // 각 객체의 오버라이딩된 템플릿 기능이 차례대로 수행됨
+    }
   }
 }

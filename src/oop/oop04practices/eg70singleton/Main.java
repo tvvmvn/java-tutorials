@@ -1,18 +1,16 @@
 package oop.oop04practices.eg70singleton;
 
-// 하나의 객체만 생성하도록 보장하는 디자인 패턴.
-// 프로그램은 싱글턴을 공유합니다.
+// 하나의 객체를 생성해 공유하는 패턴입니다.
 // 서버의 빈(Bean)들은 모두 싱글턴입니다.
-
 class MySingleton {
 
-  // 클래스 로딩 시점에 바로 객체 생성 (static final)
+  // static 변수에 싱글턴을 저장합니다.
   private static final MySingleton mySingleton = new MySingleton();
 
-  // private 생성자로 외부 생성 차단
+  // private 생성자로 외부 생성을 차단합니다
   private MySingleton() {}
 
-  // 만들어진 인스턴스를 반환
+  // 만들어진 싱글턴 인스턴스를 반환합니다
   public static MySingleton getInstance() {
     return mySingleton;
   }

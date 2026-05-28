@@ -1,4 +1,4 @@
-package oop.oop04practices.eg99tostring;
+package oop.oop04practices.eg98tostring;
 
 class Person {
   String name;

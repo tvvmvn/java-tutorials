@@ -62,6 +62,7 @@ public class Main {
     BritishPaySystem britishPaySystem = new BritishPaySystem();
     payService = new PayService(paySystem, britishPaySystem);
 
+    payService.processPay("kr", 3600);
     payService.processPay("uk", 3600);
   }
 }

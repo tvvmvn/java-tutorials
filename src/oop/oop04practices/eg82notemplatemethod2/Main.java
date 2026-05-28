@@ -1,7 +1,7 @@
 package oop.oop04practices.eg82notemplatemethod2;
 
 class PotatoChipRecipe {
-  void execute() {
+  void perform() {
     System.out.println("기름을 준비합니다");
     System.out.println("기름을 끓입니다.");
 
@@ -14,7 +14,7 @@ class PotatoChipRecipe {
 }
 
 class SweetPotatoChipRecipe {
-  void execute() {
+  void perform() {
     System.out.println("기름을 준비합니다");
     System.out.println("기름을 끓입니다.");
 
@@ -27,7 +27,7 @@ class SweetPotatoChipRecipe {
 }
 
 class CornChipRecipe {
-  void execute() {
+  void perform() {
     System.out.println("기름을 준비합니다");
     System.out.println("기름을 끓입니다.");
 
@@ -44,12 +44,12 @@ public class Main {
   public static void main(String[] args) {
     
     PotatoChipRecipe potatoChipRecipe = new PotatoChipRecipe();
-    potatoChipRecipe.execute();
+    potatoChipRecipe.perform();
 
     SweetPotatoChipRecipe sweetPotatoChipRecipe = new SweetPotatoChipRecipe();
-    sweetPotatoChipRecipe.execute();
+    sweetPotatoChipRecipe.perform();
 
     CornChipRecipe cornChipRecipe = new CornChipRecipe();
-    cornChipRecipe.execute();
+    cornChipRecipe.perform();
   }
 }
