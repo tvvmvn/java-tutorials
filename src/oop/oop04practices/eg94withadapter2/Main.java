@@ -1,76 +1,67 @@
 package oop.oop04practices.eg94withadapter2;
 
-interface Notification {
-  void sendNotification(String email, String content);
+interface ChargerStandard220V {
+  void connect220V();//220V socket
 }
 
-class SMSNotification implements Notification {
-  public void sendNotification(String phoneNumber, String content) {
-    System.out.printf("문자 메세지를 전송합니다: 전화번호=%s, 본문=%s", phoneNumber, content);
-  }
-}
-
-// 3rd 라이브러리
-class KakaoNotification {
-  void sendNotificationMessage(String kakaoId, String message) {
-    System.out.printf("카카오 메시지를 전송합니다: 카카오 아이디=%s, 메시지=%s", kakaoId, message);
+class Charger220V implements ChargerStandard220V {
+  public void connect220V() {
+    System.out.println("220V 소켓에 연결되었습니다");
   }
 }
 
-// 어답터
-class KakaoNotificationAdapter implements Notification {
-
-  KakaoNotification kakaoNotification;
-
-  KakaoNotificationAdapter(KakaoNotification kakaoNotification) {
-    this.kakaoNotification = kakaoNotification;
-  }
-
-  @Override
-  public void sendNotification(String phoneNumber, String content) {
-    System.out.println("핸드폰 정보로부터 카카오 아이디를 구하는 중: " + phoneNumber);
-    
-    String kakaoId = "johndoe";
-
-    kakaoNotification.sendNotificationMessage(kakaoId, content);
+class Charger110V {
+  public void connect110V() {
+    System.out.println("110V 소켓에 연결되었습니다");
   }
 }
 
-// 서비스
-class NotificationSender {
+class Adapter implements ChargerStandard220V {
+  Charger110V charger110V;
 
-  Notification notification;
-
-  NotificationSender(Notification notification) {
-    this.notification = notification;
+  Adapter(Charger110V charger110V) {
+    this.charger110V = charger110V;
+    System.out.println("220V 어답터가 연결되었습니다");
   }
 
-  void processNotification(String phoneNumber, String message) {
-    System.out.println("알림 전송 준비..");
+  public void connect220V() {
+    charger110V.connect110V();
+  }
+}
 
-    notification.sendNotification(phoneNumber, message);
+class Person {
 
-    System.out.println("전송 완료");
+  ChargerStandard220V chargerStandard220V;
+
+  Person(ChargerStandard220V chargerStandard220V) {
+    this.chargerStandard220V = chargerStandard220V;
+  }
+
+  void charge() {
+    System.out.println("충전해야지");
+
+    chargerStandard220V.connect220V();
+
+    System.out.println("충전중!\n");
   }
 }
 
 public class Main {
   public static void main(String[] args) {
 
-    String methods = "kakao";
-    Notification notification;
+    String chargerToUse = "charger-110V";
+    ChargerStandard220V chargerStandard220V;
 
-    if ("kakao".equals(methods)) {
-      KakaoNotification kakaoNotification = new KakaoNotification();
-      notification = new KakaoNotificationAdapter(kakaoNotification);
-    } else if ("phone".equals(methods)) {
-      notification = new SMSNotification();
+    if ("charger-220V".equals(chargerToUse)) {
+      chargerStandard220V = new Charger220V();
+    } else if ("charger-110V".equals(chargerToUse)) {
+      chargerStandard220V = new Adapter(new Charger110V());
     } else {
-      System.out.println("알 수 없는 수단");
+      System.out.println("알 수 없는 규격");
       return;
     }
 
-    NotificationSender notificationSender = new NotificationSender(notification);
-    notificationSender.processNotification("010-xxxx-xxxx", "정기메시지입니다");
+    Person person = new Person(chargerStandard220V);
+    person.charge();
   }
 }

@@ -1,4 +1,4 @@
-package oop.oop04practices.eg91noadapter;
+package oop.oop04practices.eg90noadapter;
 
 interface PayProcessor {
   void processPay();
@@ -23,29 +23,18 @@ class PayPalAPI {
 
 class OrderService {
   PayProcessor payProcessor;
-  PayPalAPI payPal;
 
-  OrderService(PayProcessor payProcessor, PayPalAPI payPal) {
+  OrderService(PayProcessor payProcessor) {
     this.payProcessor = payProcessor;
-    this.payPal = payPal;
   }
 
-  void processOrder(String payMethods) {
+  void processOrder() {
     System.out.println("주문 접수");
     System.out.println("결제를 시작합니다");
 
-    if ("default-pay".equals(payMethods)) {
-      payProcessor.processPay();
-    } else if ("paypal".equals(payMethods)) {
-      // API 키 발급
-      String apiKey = "secret-123";
-      payPal.handlePay(apiKey);
-    } else {
-      System.out.println("알 수 없는 결제수단");
-      return;
-    }
-
-    System.out.println("주문 완료\n");
+    payProcessor.processPay(); 
+    
+    System.out.println("주문 완료");
   }
 }
 
@@ -54,12 +43,8 @@ public class Main {
   public static void main(String[] args) throws Exception {
     
     PayProcessor payProcessor = new DefaultPayProcessor();
-    PayPalAPI payPal = new PayPalAPI();
-    OrderService orderService = new OrderService(payProcessor, payPal);
+    OrderService orderService = new OrderService(payProcessor);
 
-    // 기본 결제수단으로 결제 요청이 들어왔어
-    orderService.processOrder("default-pay");
-    // 페이팔로 결제 요청이 들어왔어
-    orderService.processOrder("paypal");
+    orderService.processOrder();
   }
 }
