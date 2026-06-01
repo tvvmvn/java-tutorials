@@ -16,9 +16,8 @@ class UserRepository {
     return null;
   }
 
-  User save(User user) {
-    System.out.println("DB에 저장: " + user.username);
-    return user;
+  void save(User user) {
+    System.out.println("다음 사용자를 저장합니다: " + user.username);
   }
 }
 
@@ -30,24 +29,22 @@ class UserService {
     this.userRepository = userRepository;
   }
 
-  // 가입 처리의 핵심 로직
-  String register(String signUpDto) {
+  String register(String signUpRequestDto) {
 
-    String[] dto = signUpDto.split(",");
-    String username = dto[0];
-    String password = dto[1];
-
-    // 중복 체크
-    User user = userRepository.findUserByUsername(username);
+    String[] s = signUpRequestDto.split(" ");
+    User user = userRepository.findUserByUsername(s[0]);
 
     if (user != null) {
+      System.err.println("이미 가입된 유저!");
       return null;
     }
 
-    // DB에 저장
-    User savedUser = userRepository.save(new User(username, password));
-    
-    return savedUser.username;
+    System.out.println("가입 처리를 시작합니다");
+
+    // DB에 저장을 요청합니다.
+    userRepository.save(new User(s[0], s[1]));
+
+    return s[0];// SignUpResponseDto
   }  
 } 
 
@@ -60,32 +57,26 @@ class UserController {
   }
 
   // 클라이언트와 소통하는 계층
-  String signUp(String signUpDto) {
+  String signUp(String signUpRequestDto) {
 
-    // 가입 로직을 처리합니다
-    userService.register(signUpDto);
-
-    if (newUser != null) {
-      // 클라이언트에게 응답을 전송
-      return "새 회원: " + newUser;
-    }
-
-    return null;
+    // 클라이언트에게 응답을 전송합니다.
+    return "응답: " + userService.register(signUpRequestDto);
   }
 }
 
-
 public class Main {
   public static void main(String[] args) {
+
     UserRepository userRepository = new UserRepository();
     UserService userService = new UserService(userRepository);
     UserController userController = new UserController(userService);
 
-    // 요청
-    String signUpDto = "johndoe,1234";
+    // 서버에 전송된 가입 요청 정보
+    String signUpRequestDto = "johndoe 1234";
 
-    // 응답
-    String response = userController.signUp(signUpDto);
-    System.out.println(response);
+    // 서버에서 가장 외부에 위치
+    String signUpResponseDto = userController.signUp(signUpRequestDto);
+
+    System.out.println(signUpResponseDto);
   }
 }

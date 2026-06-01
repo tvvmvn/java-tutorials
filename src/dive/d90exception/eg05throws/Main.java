@@ -5,10 +5,11 @@ import java.io.IOException;
 
 public class Main {
 
-  // throws 필수
   static boolean createFile(String name) throws IOException {
+
     File file = new File(name);
 
+    // 반드시 예외 처리를 해야하는 메서드. try-catch 또는 위로 전달하기(throws)
     if (file.createNewFile()) {
       return true;
     }

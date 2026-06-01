@@ -2,21 +2,13 @@ package dive.d80functionalinterface.eg01create;
 
 // 함수형 인터페이스 정의
 @FunctionalInterface
-interface MyFI {
-  int take(int a, int b);
+interface Person {
+  void greeting();
 }
+
+// # 별도의 클래스 정의가 필요없음!
 
 public class Main {
   public static void main(String[] args) {
-    
-    // 인터페이스 구현 (함수 정의)
-    MyFI add = (a, b) -> a + b;
-
-    // 활용하기
-    int result = add.take(1, 2);
-
-    System.out.println(result);
   }
 }
-
-// 3

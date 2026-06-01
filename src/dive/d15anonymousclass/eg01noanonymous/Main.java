@@ -1,21 +1,30 @@
 package dive.d15anonymousclass.eg01noanonymous;
 
-interface ButtonClickListener {
-  void onClick();
+interface Person {
+  void greeting();
 }
 
-// 1. 인터페이스를 구현하는 별도의 클래스를 만듦
-class AlarmTrigger implements ButtonClickListener {
-  @Override
-  public void onClick() {
-    System.out.println("알람이 울립니다!");
+// * public class는 파일 하나당 하나만 가능! -> 클래스들을 파일별로 분리해야되 *
+
+class Korean implements Person {
+  public void greeting() {
+    System.out.println("안녕하세요!");
+  }
+}
+
+class Japanese implements Person {
+  public void greeting() {
+    System.out.println("곤니치와!");
   }
 }
 
 public class Main {
   public static void main(String[] args) {
-    // 2. 객체를 생성해서 사용
-    ButtonClickListener listener = new AlarmTrigger();
-    listener.onClick();
+    
+    Person korean = new Korean();
+    Person japanese = new Japanese();
+
+    korean.greeting();
+    japanese.greeting();
   }
 }

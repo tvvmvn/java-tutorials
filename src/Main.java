@@ -1,42 +1,16 @@
-class Chef {
 
-  String bowl = "";
-
-  Chef boilWater() {
-    bowl += "water ";
-    return this;
-  }
-
-  Chef addIngredients() {
-    bowl += "ingredients ";
-    return this;
-  }
-
-  Chef addSpice() {
-    bowl += "spice ";
-    return this;
-  }
-
-  Chef addNoodle() {
-    bowl += "noodles ";
-    return this;
-  }
-
-  String getRamen() {
-    return bowl;
-  }
+class Person {
+  String name;
 }
+
+// 계산기 객체 (Calculator)를 만들어보세요.
 
 public class Main {
   public static void main(String[] args) {
     
-    String ramen = new Chef()
-      .boilWater()
-      .addIngredients()
-      .addSpice()
-      .addNoodle()
-      .getRamen();
+    Person person = null;
 
-    System.out.println(ramen);
+
+    System.out.println(person);
   }
 }

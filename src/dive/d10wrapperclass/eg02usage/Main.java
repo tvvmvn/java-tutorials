@@ -11,5 +11,7 @@ public class Main {
     nums.add(10);
     nums.add(20);
     nums.add(30);
+
+    System.out.println(nums);
   }
 }

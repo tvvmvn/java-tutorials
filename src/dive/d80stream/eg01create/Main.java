@@ -1,45 +1,34 @@
 package dive.d80stream.eg01create;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
-class User {
+class Person {
+
   String name;
-  String address;
+  int age;
 
-  User(String name, String address) {
+  Person(String name, int age) {
     this.name = name;
-    this.address = address;
-  }
-
-  String getName() {
-    return name;
-  }
-
-  String getAddress() {
-    return address;
+    this.age = age;
   }
 }
 
 public class Main {
   public static void main(String[] args) {
 
-    User[] users = new User[4];
+    // 배열
+    Person[] persons = {
+      new Person("John Doe", 30),
+      new Person("Jane Doe", 25),
+      new Person("Mary Doe", 40),
+      new Person("짱구", 5)
+    };
     
-    users[0] = new User("John Doe", "서울시");
-    users[1] = new User("Jane Doe", "인천시");
-    users[2] = new User("Mary Doe", "서울시");
-    users[3] = new User("Steve Jobs", "서울시");
+    // 배열로부터 스트림 생성
+    Stream <Person> personsStream = Arrays.stream(persons);
 
-    // Before stream
-    for (User user : users) {
-      if ("서울시".equals(user.getAddress())) {
-        System.out.println(user.getName());
-      }
-    }
-
-    // After stream
-    Arrays.stream(users)
-      .filter(user -> "서울시".equals(user.getAddress()))
-      .forEach((user) -> System.out.println(user.getName()));
+    // java.util.stream.ReferencePipeline$Head@7344699f
+    System.out.println(personsStream);
   }
 }

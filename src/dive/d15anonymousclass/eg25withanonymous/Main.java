@@ -1,19 +1,25 @@
 package dive.d15anonymousclass.eg25withanonymous;
 
-interface ButtonClickListener {
-  void onClick();
+interface Person {
+  void greeting();
 }
 
 public class Main {
   public static void main(String[] args) {
-    // 클래스 정의와 객체 생성을 한 번에 처리
-    ButtonClickListener listener = new ButtonClickListener() {
-      @Override
-      public void onClick() {
-        System.out.println("알람이 울립니다!");
+
+    Person korean = new Person() {
+      public void greeting() {
+        System.out.println("안녕하세요!");
       }
     };
 
-    listener.onClick();
+    Person japanese = new Person() {
+      public void greeting() {
+        System.out.println("곤니치와!");
+      }
+    };
+
+    korean.greeting();
+    japanese.greeting();
   }
 }
