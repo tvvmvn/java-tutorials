@@ -2,11 +2,11 @@ package dive.d70generics.eg02usage2;
 
 class Car {
 
-  String modelName;
-  String color;
-  int year;
+  private String modelName;
+  private String color;
+  private int year;
 
-  Car(String modelName, String color, int year) {
+  public Car(String modelName, String color, int year) {
     this.modelName = modelName;
     this.color = color;
     this.year = year;
@@ -21,25 +21,25 @@ class Car {
 // 💡 <T>를 붙여 데이터 타입을 외부에서 결정하도록 위임합니다.
 class Person<T> {
 
-  String name;
-  int age;
-  T numberOne;
+  private String name;
+  private int age;
+  private T numberOne;
 
-  Person(String name, int age, T numberOne) {
+  public Person(String name, int age, T numberOne) {
     this.name = name;
     this.age = age;
     this.numberOne = numberOne;
   }
 
-  String getName() {
+  public String getName() {
     return name;
   }
 
-  int getAge() {
+  public int getAge() {
     return age;
   }
 
-  T getNumberOne() {
+  public T getNumberOne() {
     return numberOne;
   } 
 }
