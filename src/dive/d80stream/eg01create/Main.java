@@ -25,10 +25,10 @@ public class Main {
       new Person("짱구", 5)
     };
     
-    // 배열로부터 스트림 생성
     Stream <Person> personsStream = Arrays.stream(persons);
 
-    // java.util.stream.ReferencePipeline$Head@7344699f
     System.out.println(personsStream);
   }
 }
+
+// java.util.stream.ReferencePipeline$Head@7344699f

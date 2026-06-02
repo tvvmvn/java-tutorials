@@ -1,5 +1,6 @@
 package dive.d70generics.eg01class;
 
+// 바꿀 필요 없다
 class Box<T> {
 
   T content;

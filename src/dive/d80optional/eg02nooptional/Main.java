@@ -1,6 +1,7 @@
 package dive.d80optional.eg02nooptional;
 
 class User {
+
   int id;
   String username;
 
@@ -35,7 +36,7 @@ public class Main {
     
     User user = findUserById(1);
 
-    // null 체크
+    // null 체크 (이게 싫어서!)
     if (user == null) {
       throw new RuntimeException("No user with id");
     }

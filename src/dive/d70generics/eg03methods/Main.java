@@ -4,27 +4,16 @@ public class Main {
 
   // <T> return_type 함수이름
   static <T> void info(T d) {
-    System.out.println("입력값 정보:");
-    System.out.printf("타입: %s\n", d.getClass().getName());
-    System.out.printf("값: %s\n", d);
+    System.out.println("입력값 정보");
+    System.out.println("자료형: " + d.getClass().getName());
+    System.out.println("값: " + d);
     System.out.println();
   }
 
   public static void main(String[] args) {
-    info(100);
+    info(99);
     info(2.0);
     info("hello");
+    info(true);
   }
 }
-
-// 입력값 정보:
-// 타입: java.lang.Integer
-// 값: 100
-
-// 입력값 정보:
-// 타입: java.lang.Double
-// 값: 2.0
-
-// 입력값 정보:
-// 타입: java.lang.String
-// 값: hello
