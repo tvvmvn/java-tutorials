@@ -1,16 +1,17 @@
 package collections.c02hashset.eg05size;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
   public static void main(String[] args) {
 
-    HashSet<String> cars = new HashSet<String>();
+    Set<String> persons = new HashSet<String>();
 
-    cars.add("Volvo");
-    cars.add("BMW");
-    cars.add("Ford");
+    persons.add("John Doe");
+    persons.add("Jane Doe");
+    persons.add("Mary Doe");
 
-    System.out.println(cars.size());
+    System.out.println(persons.size());
   }
 }

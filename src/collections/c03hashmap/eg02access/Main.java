@@ -5,17 +5,17 @@ import java.util.HashMap;
 
 public class Main {
   public static void main(String[] args) {
-    // Create a HashMap object called capitalCities
+
     HashMap<String, String> capitalCities = new HashMap<String, String>();
+    
+    capitalCities.put("S.Korea", "Seoul");
+    capitalCities.put("Japan", "Tokyo");
+    capitalCities.put("USA", "Washington D.C");
+    capitalCities.put("Germany", "Berlin");
 
-    // Add keys and values (Country, City)
-    capitalCities.put("England", "London");
-    capitalCities.put("India", "New Dehli");
-    capitalCities.put("Austria", "Wien");
-    capitalCities.put("Norway", "Oslo");
-    capitalCities.put("Norway", "Oslo"); // Duplicate
-    capitalCities.put("USA", "Washington DC");
-
-    System.out.println(capitalCities.get("England"));
+    System.out.println(capitalCities.get("S.Korea"));
+    System.out.println(capitalCities.get("Japan"));
+    System.out.println(capitalCities.get("USA"));
+    System.out.println(capitalCities.get("Germany"));
   }
 }

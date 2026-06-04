@@ -1,20 +1,21 @@
 package collections.c02hashset.eg03remove;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
   public static void main(String[] args) {
 
-    HashSet<String> cars = new HashSet<String>();
+    Set<String> persons = new HashSet<String>();
 
-    cars.add("Volvo");
-    cars.add("BMW");
-    cars.add("Ford");
+    persons.add("John Doe");
+    persons.add("Jane Doe");
+    persons.add("Mary Doe");
 
-    cars.remove("Volvo");
+    System.out.println(persons);
 
-    System.out.println(cars);
+    persons.remove("John Doe");
+
+    System.out.println(persons.contains("John Doe"));
   }
 }
-
-//true

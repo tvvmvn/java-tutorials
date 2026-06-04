@@ -6,14 +6,13 @@ import java.util.ArrayList;
 public class Main {
   public static void main(String[] args) {
 
-    ArrayList<String> cars = new ArrayList<String>();
+    ArrayList<String> persons = new ArrayList<String>();
 
-    cars.add("Volvo");
-    cars.add("BMW");
-    cars.add("Ford");
-    cars.add("Mazda");
+    persons.add("John Doe");
+    persons.add("Jane Doe");
+    persons.add("Mary Doe");
 
-    System.out.println(cars.size());
+    System.out.println(persons.size());
   }
 }
 

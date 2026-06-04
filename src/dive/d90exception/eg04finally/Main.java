@@ -5,23 +5,19 @@ import java.util.Scanner;
 public class Main {
   public static void main(String[] args) {
 
+    Scanner scanner = new Scanner(System.in);
+
     int age;
 
-    Scanner scanner = new Scanner(System.in);
-    
-    System.out.println("몇 살이니?");
-
     try {
-      age = scanner.nextInt();
-      System.out.println("나이: " + age);
+      System.out.print("몇 살이니? ");
+      age = scanner.nextInt(); // 입력값이 정수가 아니면 예외를 던짐
 
+      System.out.println("나이: " + age);
     } catch (Exception e) {
-      System.err.println("Exception: " + e);
+      System.out.println("예외 발생! " + e.getClass());
     } finally {
       scanner.close();
     }
   }
 }
-
-// Exception: java.lang.ArithmeticException: / by zero
-// 예외 처리문 종료
