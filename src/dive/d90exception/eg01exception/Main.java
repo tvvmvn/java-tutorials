@@ -19,6 +19,7 @@ public class Main {
     
     try {
       user.setUsername("j");
+      // 기타 가입 과정
 
       System.out.println("가입이 완료되었습니다");
 

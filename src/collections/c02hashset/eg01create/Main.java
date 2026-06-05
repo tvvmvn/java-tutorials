@@ -6,12 +6,12 @@ import java.util.HashSet;
 public class Main {
   public static void main(String[] args) {
 
-    Set<String> persons = new HashSet<String>();
+    Set<String> fruits = new HashSet<String>();
 
-    persons.add("John Doe");
-    persons.add("Jane Doe");
-    persons.add("Mary Doe");
+    fruits.add("Apple");
+    fruits.add("Banana");
+    fruits.add("Orange");
 
-    System.out.println(persons);
+    System.out.println(fruits);
   }
 }

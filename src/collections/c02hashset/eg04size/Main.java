@@ -1,4 +1,4 @@
-package collections.c02hashset.eg02contains;
+package collections.c02hashset.eg04size;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,9 +12,6 @@ public class Main {
     fruits.add("Banana");
     fruits.add("Orange");
 
-    System.out.println(fruits.contains("Apple"));
-    System.out.println(fruits.contains("Mango"));
+    System.out.println(fruits.size());
   }
 }
-
-//true
