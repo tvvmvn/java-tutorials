@@ -6,73 +6,94 @@ import java.util.Scanner;
 
 class PlayList {
 
-  List<String> songs = new ArrayList<>();
+  private List<String> songs = new ArrayList<>();
 
-  void addSong(String name) {
+  public PlayList() {}
+
+  public void addSong(String name) {
     songs.add(name);
   }
 
-  void removeSong(String num) {
-    int index = Integer.parseInt(num) - 1;
+  public void removeSong(int num) {
+    int index = num - 1;
+    if (index < 0 || index > songs.size() - 1) {
+      System.out.println("존재하지 않는 노래입니다");
+      return;
+    }
+
     songs.remove(index);
   }
 
-  void listSongs() {
-    int i = 1;
-    for (String song : songs) {
-      System.out.println((i++) + ". " + song);
+  public void listSongs() {
+    for (int i = 0; i < songs.size(); i++) {
+      System.out.println((i + 1) + ". " + songs.get(i));
     }
   }
 }
 
 class App {
 
-  PlayList playList = new PlayList();
+  private PlayList playList = new PlayList();
 
-  App() {
+  public App() {
     playList.addSong("foo");
     playList.addSong("bar");
     playList.addSong("baz");
   }
 
-  void play() {
+  public void play() {
+
     Scanner scanner = new Scanner(System.in);
-    String command;
+    String userInput;
 
     while (true) {
-      System.out.println("\n플레이리스트 앱!");
+      // UI
+      System.out.println();
+      System.out.println("===============================================");
+      System.out.println("플레이리스트 앱 🎵");
       playList.listSongs();
-      System.out.println("추가: add + 노래");
-      System.out.println("삭제: drop + 노래 번호");
-      System.out.println("종료: bye");
-      System.out.print(">>>");
+      System.out.println();
+      System.out.println("추가: add + 노래 | 삭제: drop + 노래 번호 | 종료: end");
+      System.out.println("===============================================");
+      
+      // User input
+      System.out.print("▶ ");
+      userInput = scanner.nextLine().trim();
+      
+      String[] parsedInput = userInput.split(" ", 2);
+      String command = parsedInput[0];
 
-      command = scanner.nextLine();
-
-      if ("bye".equals(command)) {
+      if ("end".equals(command)) {
         System.out.println("잘가");
-        scanner.close();
-        return;
-      }
+        break;
+      } else if ("add".equals(command)) {
+        String newSong = parsedInput[1];
 
-      String[] arr = command.split(" ", 2);
-
-      if (arr.length < 2) {
-        System.out.println("잘못된 명령");
-        scanner.close();
-        return;
-      }
-
-      if ("add".equals(arr[0])) {
-        playList.addSong(arr[1]);
-      } else if ("drop".equals(arr[0])) {
-        playList.removeSong(arr[1]);
+        if (parsedInput.length < 2 || newSong.isBlank()) {
+          System.out.println("노래 제목을 적으세요");
+        } else {
+          playList.addSong(parsedInput[1]);
+        }
+      } else if ("drop".equals(command)) {
+        if (parsedInput.length < 2) {
+          System.out.println("삭제할 번호를 선택하세요");
+          continue;
+        }
+        
+        try {
+          int number = Integer.parseInt(parsedInput[1]);
+  
+          playList.removeSong(number);
+        } catch (NumberFormatException e) {
+          System.out.println("유효한 숫자를 입력하세요");
+        }
       } else {
         System.out.println("잘못된 명령");
-        scanner.close();
-        return;
       }
     }
+
+    // 
+    scanner.close();
   }
 }
 

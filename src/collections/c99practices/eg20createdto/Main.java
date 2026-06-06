@@ -60,7 +60,7 @@ public class Main {
     users.add(new User(2, "janedoe", "xxx", "/janedoe.jpg"));
     users.add(new User(3, "marydoe", "xxx", "/marydoe.jpg"));
 
-    // 조회용 사용자 목록을 생성합니다
+    // 검색용 사용자 목록을 생성합니다
     List<UserSearchDto> userSearchDtos = users.stream()
       .map(user -> new UserSearchDto(user.getUsername(), user.getPhotoUrl()))
       .collect(Collectors.toList());
