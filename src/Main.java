@@ -1,16 +1,34 @@
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
+
+interface PaymentProcessor {
+  public void processPay();
+}
+
+class SamsungPayProcessor implements PaymentProcessor {
+  @Override
+  public void processPay() {
+    System.out.println("삼성페이 처리중");
+  }
+}
+
+class ApplePayProcessor implements PaymentProcessor {
+  @Override
+  public void processPay() {
+    System.out.println("애플페이 처리중");
+  }
+}
 
 public class Main {
   public static void main(String[] args) {
     
-    Map<String, Consumer<String>> m = new HashMap<>();
+    // add a b c
+    String request = "samsung-pay";
 
-    m.put("dance", (d) -> System.out.println(d));
+    Map<String, PaymentProcessor> paymentProcessors = new HashMap<>();
+    paymentProcessors.put("samsung-pay", new SamsungPayProcessor());
+    paymentProcessors.put("apple-pay", new ApplePayProcessor());
 
-    Consumer<String> consumer =  m.get("dance");
 
-    consumer.accept("dancing!");
   }
 }
