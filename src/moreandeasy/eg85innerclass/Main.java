@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 class Post {
 
-  String photoUrl;
-  String content;
-  int likeCount;
-  int authorId;
+  private String photoUrl;
+  private String content;
+  private int likeCount;
+  private int authorId;
 
-  Post(String photoUrl, String content, int likeCount, int authorId) {
+  public Post(String photoUrl, String content, int likeCount, int authorId) {
     this.photoUrl = photoUrl;
     this.content = content;
     this.likeCount = likeCount;
@@ -37,21 +37,21 @@ class Post {
 
 class UserProfileDto {
 
-  String username;
-  String bio;
-  List<ProfilePost> posts;
+  private String username;
+  private String bio;
+  private List<ProfilePost> posts;
 
-  UserProfileDto(String username, String bio, List<ProfilePost> posts) {
+  public UserProfileDto(String username, String bio, List<ProfilePost> posts) {
     this.username = username;
     this.bio = bio;
     this.posts = posts;
   }
   
-  static class ProfilePost {
-    String photoUrl;
-    int likeCount;
+  public static class ProfilePost {
+    private String photoUrl;
+    private int likeCount;
 
-    ProfilePost(String photoUrl, int likeCount) {
+    public ProfilePost(String photoUrl, int likeCount) {
       this.photoUrl = photoUrl;
       this.likeCount = likeCount;
     }
