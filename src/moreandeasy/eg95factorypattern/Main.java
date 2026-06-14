@@ -28,19 +28,28 @@ class KakaoPayProcessor implements PaymentProcessor {
   }
 }
 
+class PaymentProcessorFactory {
+
+    private static final Map<String, PaymentProcessor> payProcessors = new HashMap<>();
+
+    static {
+      payProcessors.put("apple-pay", new ApplePayProcessor());
+      payProcessors.put("samsung-pay", new SamsungPayProcessor());
+      payProcessors.put("kakao-pay", new KakaoPayProcessor());
+    }
+
+    static PaymentProcessor getPayProcessor(String payRequest) {
+      return payProcessors.get(payRequest);
+    }
+}
+
 public class Main {
   public static void main(String[] args) {
     
-    String request = "samsung-pay";
-
-    // 전략들을 한 곳에 보관
-    Map<String, PaymentProcessor> paymentProcessors = new HashMap<>();
-    paymentProcessors.put("apple-pay", new ApplePayProcessor());
-    paymentProcessors.put("samsung-pay", new SamsungPayProcessor());
-    paymentProcessors.put("kakao-pay", new KakaoPayProcessor());
+    String payRequest = "samsung-pay";
 
     // 결제 처리
-    PaymentProcessor paymentProcessor = paymentProcessors.get(request);
+    PaymentProcessor paymentProcessor = PaymentProcessorFactory.getPayProcessor(payRequest);
     paymentProcessor.processPay();
   }
 }

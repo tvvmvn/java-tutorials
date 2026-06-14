@@ -1,46 +1,22 @@
-# SQL
-
-
 # CREATE TABLE
 
 ```sql
-CREATE TABLE category (
-  categoryId int AUTO_INCREMENT,
-  name varchar(20) NOT NULL,
-  PRIMARY KEY(categoryId),
-)
-```
-
-```sql
 CREATE TABLE product (
-  productId int AUTO_INCREMENT,
-  name varchar(20) NOT NULL,
-  price int NOT NULL,
-  categoryId int NOT NULL,
-  PRIMARY KEY(productId),
-  FOREIGN KEY(categoryId) REFERENCES category(categoryId)
+  product_id int AUTO_INCREMENT,
+  product_name varchar(100) NOT NULL,
+  price int unsigned NOT NULL,
+  category varchar(100) NOT NULL,
+  sales int unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY(product_id)
 )
 ```
 
 # INSERT
 
 ```sql
-INSERT INTO category (name) VALUES ('');
-INSERT INTO category (name) VALUES ('');
-INSERT INTO category (name) VALUES ('');
-```
-
-```sql
-INSERT INTO product (name, price, categoryId) VALUES ('', , );
-INSERT INTO product (name, price, categoryId) VALUES ('', , );
-INSERT INTO product (name, price, categoryId) VALUES ('', , );
-INSERT INTO product (name, price, categoryId) VALUES ('', , );
-INSERT INTO product (name, price, categoryId) VALUES ('', , );
-```
-
-
-# SELECT
-
-```sql
-
+INSERT INTO product (product_name, price, category, sales) VALUES ('아메리카노', 2000, '커피', 10);
+INSERT INTO product (product_name, price, category, sales) VALUES ('카페라떼', 3000, '커피', 5);
+INSERT INTO product (product_name, price, category, sales) VALUES ('바닐라라떼', 3500, '커피', 3);
+INSERT INTO product (product_name, price, category, sales) VALUES ('마카롱', 2000, '디저트', 2);
+INSERT INTO product (product_name, price, category, sales) VALUES ('치즈케이크', 4000, '디저트', 1);
 ```
